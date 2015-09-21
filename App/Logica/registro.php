@@ -27,7 +27,10 @@ else
 	}
 	else
 	{
-
+		$comand+="select '".$id."','".$pass."','".$nombre."','".$ape1."','".$ape2."','".$email."'";
+		$comand+="FROM DUAL";
+        $comand+="WHERE NOT EXISTS (SELECT id_usuario FROM usuarios WHERE id_usuario='".$id."');";
+        echo $comand;
 	}
 
 }
