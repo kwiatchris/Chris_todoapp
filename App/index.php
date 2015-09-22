@@ -4,7 +4,7 @@
  
 <h3>AppTareas</h3>
     <div id="Inisesion">
-	    <form action="iniciosesion.php" method="post">
+	    <form action="./Logica/iniciosesion.php" method="post">
 		    <table>
 			    <tr>
 				    <td><label>Usuario: </label></td>
