@@ -3,7 +3,8 @@ session_start();
 //echo $_SESSION['login_user'];
 //echo $_SESSION['id_usuario'];
 $id_usu_sesion=$_SESSION['id_usuario'];
-//echo $id_usu_sesion;
+$id_usuario_sesion=$_SESSION['login_user'];
+echo "hello ".$id_usuario_sesion;
 try {
 	$pdo=new PDO('mysql:host=localhost;dbname=TO_DO_PHP','root','internet80');
 		if(!$pdo){
@@ -22,9 +23,10 @@ $id_lista=$result[0]['id_lista'];//pasamos numero de la lista desde la querry $s
 echo "<br>";
 foreach ($result as $res){//recoremos el resultado por filas adecuados[''] desde query $statement
         echo'<tr>';
-        //echo'<td>' ."lista: ". $res['id_lista']."</td>";echo "<br>"; 
+        echo'<td>' ."lista: ". $res['id_lista']."</td>";echo "<br>"; 
         //echo'<td>' ."usuario: ". $res['id_usuario']."</td>";echo "<br>";
-        echo'<td>' ."nombre de la lista : ". $res['nombre'].'</td>';echo "<br>";
+            
+        echo '<td>'."<a href=http://localhost/Aitor/TO_DO_/TO_DO_GIT/Chris_todoapp/to_do_tareas.php?id_lista=".$res['id_lista']."&nombre=".$res['nombre'].'>'.$res['nombre']."</a>".'</td>';//link con nombre de la lista******************************
        // echo'<td>' . "la lista creada dia ". $res['fecha_creacion'].'</td>';echo "<br>";
         echo'<tr>';
         echo "<br>";echo "<br>";
@@ -41,11 +43,7 @@ $statement_tarea_crear=$pdo->query("INSERT INTO  `tareas` (`id_tarea` ,`id_lista
 VALUES ('null',  '$id_lista',  '$id_usu_sesion',  '$texto');");
 }*/
 ?>
-<!-- formulario de la tarea -->
-<form action="" method="post">
-tarea: <input type="text" name="tarea"><br>
-<input name="submit" type="submit" value="ADD TAREA" >
-</form>
+
 <!-- formulario de la lista -->
 <form action="" method="post">
 NUEVA LISTA: <input type="text" name="lista"><br>
@@ -56,27 +54,12 @@ NUEVA LISTA: <input type="text" name="lista"><br>
 $nuevatarea=$_POST['tarea'];echo "<br>";
 $nuevalista=$_POST['lista'];echo "<br>";
 
-if(isset($_POST['submit'])&&(!empty($nuevatarea))){//creamos nueva tarea
 	
-	//echo $nuevatarea;echo "<br>";
-	$statement_tarea_crear=$pdo->query("INSERT INTO  `tareas` (`id_tarea` ,`id_lista` ,`id_usuario` ,`texto`)
-VALUES ('null',  '$id_lista',  '$id_usu_sesion',  '$nuevatarea');");//insertamos la tarea al BD
-	//comprobamos si el INSERT se ejecuto correctamente
-	if($statement_tarea_crear){
-		echo "<script language='javascript'>";
-		echo "alert('la tarea creada corectamente!!!!')";
-		echo "</script>";
-		echo $tarea;
-	}else{
-		echo "<script language='javascript'>";
-		echo "alert('fallo creando la tarea!!!!')";
-		echo "</script>";
-	}
 	/*$resu_tarea=$statement_tarea->fetchAll(PDO::FETCH_ASSOC);**********************************
 	foreach ($resu_tarea as $value) {//recorremos el array q devuelto la query $statement_tarea
 	echo "tareas: ".$value['texto'];echo "<br>";
 }*/
-	}
+	
 
 if(isset($_POST['submit'])&&(!empty($nuevalista))){//creamos nueva lista
 	$statement_lista_crear=$pdo->query("INSERT INTO `listas`(`id_lista`, `id_usuario`, `nombre`) 
@@ -85,7 +68,8 @@ if($statement_lista_crear){
 		echo "<script language='javascript'>";
 		echo "alert('la lista creada corectamente!!!!')";
 		echo "</script>";
-		echo $nuevalista;
+		header('Refresh:1;URL=http://localhost/Aitor/TO_DO_/TO_DO_GIT/Chris_todoapp/to_do_listas.php');
+		
 	}else{
 		echo "<script language='javascript'>";
 		echo "alert('fallo creando la lista!!!!')";
