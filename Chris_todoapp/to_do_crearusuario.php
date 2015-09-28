@@ -4,7 +4,7 @@
 </head>
 <body>
 	<h1>Chris y Ierai to_do tarea</h1>
-<form action="to_do.php" method="post">
+<form action="to_do_create.php" method="post">
 login: <input type="text" name="login"><br>
 nombre: <input type="text" name="nombre"><br>
 password: <input type="text" name="password"><br>
