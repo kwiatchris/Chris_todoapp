@@ -3,10 +3,10 @@ session_start();
 //echo $_SESSION['login_user'];
 //echo $_SESSION['id_usuario'];
 $id_usu_sesion=$_SESSION['id_usuario'];
-$id_usuario_sesion=$_SESSION['login_user'];
-echo "hello ".$id_usuario_sesion;
+//$id_usuario_sesion=$_SESSION['login_user'];
+echo "hello ".$id_usu_sesion;
 try {
-	$pdo=new PDO('mysql:host=localhost;dbname=TO_DO_PHP','root','internet80');
+	$pdo=new PDO('mysql:host=localhost;dbname=apptarea','apptarea','apptarea');
 		if(!$pdo){
 				die('could not connect' . PDO_error());
 					}
@@ -26,7 +26,7 @@ foreach ($result as $res){//recoremos el resultado por filas adecuados[''] desde
         echo'<td>' ."lista: ". $res['id_lista']."</td>";echo "<br>"; 
         //echo'<td>' ."usuario: ". $res['id_usuario']."</td>";echo "<br>";
             
-        echo '<td>'."<a href=http://localhost/Aitor/TO_DO_/TO_DO_GIT/Chris_todoapp/to_do_tareas.php?id_lista=".$res['id_lista']."&nombre=".$res['nombre'].'>'.$res['nombre']."</a>".'</td>';//link con nombre de la lista******************************
+        echo '<td>'."<a href=http://localhost/Aitor/TO_DO_/TO_DO_GIT/todoapp/Chris_todoapp/to_do_tareas.php?id_lista=".$res['id_lista']."&nombre=".$res['titulo'].'>'.$res['titulo']."</a>".'</td>';//link con nombre de la lista******************************
        // echo'<td>' . "la lista creada dia ". $res['fecha_creacion'].'</td>';echo "<br>";
         echo'<tr>';
         echo "<br>";echo "<br>";
@@ -53,7 +53,10 @@ NUEVA LISTA: <input type="text" name="lista"><br>
 //cuando añadimos nueva tarea.....
 $nuevatarea=$_POST['tarea'];echo "<br>";
 $nuevalista=$_POST['lista'];echo "<br>";
-
+$timezone = date_default_timezone_get();
+echo "The current server timezone is: " . $timezone;
+$date = date('m/d/Y h:i:s a', time());
+echo $date;
 	
 	/*$resu_tarea=$statement_tarea->fetchAll(PDO::FETCH_ASSOC);**********************************
 	foreach ($resu_tarea as $value) {//recorremos el array q devuelto la query $statement_tarea
@@ -62,13 +65,14 @@ $nuevalista=$_POST['lista'];echo "<br>";
 	
 
 if(isset($_POST['submit'])&&(!empty($nuevalista))){//creamos nueva lista
-	$statement_lista_crear=$pdo->query("INSERT INTO `listas`(`id_lista`, `id_usuario`, `nombre`) 
-VALUES ('null','$id_usu_sesion','$nuevalista');");//insertamos la lista al BD
+	$statement_lista_crear=$pdo->query("INSERT INTO `listas`(`id_lista`, `id_usuario`, `titulo`, `fechacreacion`)
+	 VALUES ('null','$id_usu_sesion','$nuevalista','$date');");//insertamos la lista al BD
+	
 if($statement_lista_crear){
 		echo "<script language='javascript'>";
 		echo "alert('la lista creada corectamente!!!!')";
 		echo "</script>";
-		header('Refresh:1;URL=http://localhost/Aitor/TO_DO_/TO_DO_GIT/Chris_todoapp/to_do_listas.php');
+		header('Refresh:1;URL=http://localhost/Aitor/TO_DO_/TO_DO_GIT/todoapp/Chris_todoapp/to_do_listas.php');
 		
 	}else{
 		echo "<script language='javascript'>";

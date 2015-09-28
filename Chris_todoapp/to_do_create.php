@@ -2,14 +2,14 @@
 
 <?php
 //PDO + mySQL
-try{	$pdo=new PDO('mysql:host=localhost;dbname=TO_DO_PHP','root','internet80');
+try{	$pdo=new PDO('mysql:host=localhost;dbname=apptarea','root','internet80');
 			if(!$pdo){
 			die('could not connect' . PDO_error());
 	}
 //var_dump($_POST);
 extract($_POST);
 //$value = mysql_real_escape_string($_POST['login']);
-$statement=$pdo->query("SELECT * FROM `usuarios` WHERE login='$login'");
+$statement=$pdo->query("SELECT * FROM `usuarios` WHERE id_usuario='$login'");
 //var_dump($_POST);
 //$newlogin=$_POST['login'];
 //echo $login;echo "<br>";
@@ -36,24 +36,24 @@ $statement=$pdo->query("SELECT * FROM `usuarios` WHERE login='$login'");
 		echo "<script language='javascript'>";
 		echo "alert('falta datos!!!!')";
 		echo "</script>";
-		header('Refresh:1;URL=http://localhost/Aitor/TO_DO_/TO_DO_GIT/Chris_todoapp/to_do_crearusuario.php');
+		header('Refresh:1;URL=http://localhost/Aitor/TO_DO_/TO_DO_GIT/todoapp/Chris_todoapp/to_do_crearusuario.php');
 			}
 	elseif($result[0][login]===$login){
 		echo "true";
 		  echo "<script language='javascript'>";
 		echo "alert('usuario ya existe!!!!')";
 		echo "</script>";
-		header('Refresh:1;URL=http://localhost/Aitor/TO_DO_/TO_DO_GIT/Chris_todoapp/to_do_crearusuario.php');
+		header('Refresh:1;URL=http://localhost/Aitor/TO_DO_/TO_DO_GIT/todoapp/Chris_todoapp/to_do_crearusuario.php');
 		
 	} else{
 				//$insert_usuario=$pdo->query("INSERT INTO `TO_DO_PHP`.`usuarios` (`id`, `login`, `password`, `nombre`) VALUES (NULL, '$login', '$password','$nombre')");
-				$insert_usuario=$pdo->query("INSERT INTO `TO_DO_PHP`.`usuarios` (`id_usuario`, `login`, `password`, `nombre`) VALUES ('NULL', '$login', '$password','$nombre')");
+				$insert_usuario=$pdo->query("INSERT INTO `apptarea`.`usuarios` (`id_usuario`, `login`, `password`, `nombre`) VALUES ('NULL', '$login', '$password','$nombre')");
 				$insert_usuario->execute();
 					if($insert_usuario){
 		echo "<script language='javascript'>";
 		echo "alert('el usuario creado corectamente!!!!')";
 		echo "</script>";
-		header('Refresh:1;URL=http://localhost/Aitor/TO_DO_/TO_DO_GIT/Chris_todoapp/to_do_login.html');
+		header('Refresh:1;URL=http://localhost/Aitor/TO_DO_/TO_DO_GIT/todoapp/Chris_todoapp/to_do_login.html');
 		}else{
 		echo "<script language='javascript'>";
 		echo "alert('fallo creando el usuario!!!!')";
