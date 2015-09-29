@@ -3,7 +3,7 @@ session_start();
 //echo $_SESSION['login_user'];
 //echo $_SESSION['id_usuario'];
 $id_usu_sesion=$_SESSION['id_usuario'];
-$id_usuario_sesion=$_SESSION['login_user'];
+$id_usuario_sesion=$_SESSION['id_usuario'];
 echo "hello ".$id_usuario_sesion;echo "<br>";
 //echo $_GET['id_lista'];
 $id_lista_elegida=$_GET['id_lista'];
@@ -29,7 +29,7 @@ echo "<br>";
 if($result){
 foreach ($result as $res){//recoremos el resultado por filas adecuados[''] desde query $statement
         echo'<tr>';
-       
+       //echo '<td>'."id_tarea: " .$res['id_tarea']."</td>";
         echo'<td>' ."tarea: ". $res['contenido']."</td>";echo "<br>"; 
         echo '<td>'." estado: " ."</td>";
         $estado=$res['estado'];
@@ -46,14 +46,16 @@ foreach ($result as $res){//recoremos el resultado por filas adecuados[''] desde
      case "3":
         echo "Finalizada";
         break;
-    }
-         ?><select name="estado" value="<?php$estado?>">
+    }echo "<br>";
+    echo '<td>'."<a href=http://localhost/Aitor/TO_DO_/TO_DO_GIT/todoapp/Chris_todoapp/to_do_estado_change.php?id_tarea=".$res['id_tarea']."&estado=".$res['estado'].'>'."cambio de estado"."</a>".'</td>';
+         /*?><select name="estado" onchange="subir()">
+         <option >ELIGE</option>
           <option value="0">Pendiente</option>
  		  <option value="1">En curso</option>
  		  <option value="2">Sin finalizar</option>
  		  <option value="3">Finalizada</option>
 </select>
- 		 <?php
+ 		 <?php*/
         //echo'<td>' ."usuario: ". $res['id_usuario']."</td>";echo "<br>";
         // echo'<td>' . "la lista creada dia ". $res['fecha_creacion'].'</td>';echo "<br>";
         echo'<tr>';

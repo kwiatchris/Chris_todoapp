@@ -54,9 +54,9 @@ NUEVA LISTA: <input type="text" name="lista"><br>
 $nuevatarea=$_POST['tarea'];echo "<br>";
 $nuevalista=$_POST['lista'];echo "<br>";
 $timezone = date_default_timezone_get();
-echo "The current server timezone is: " . $timezone;
+//echo "The current server timezone is: " . $timezone;
 $date = date('m/d/Y h:i:s a', time());
-echo $date;
+//echo $date;
 	
 	/*$resu_tarea=$statement_tarea->fetchAll(PDO::FETCH_ASSOC);**********************************
 	foreach ($resu_tarea as $value) {//recorremos el array q devuelto la query $statement_tarea
@@ -90,4 +90,6 @@ $nuevatarea="";
 	echo $tarea;
 	$nuevalista="";*/
 }
+
+echo '<a href="http://localhost/Aitor/TO_DO_/TO_DO_GIT/todoapp/Chris_todoapp/to_do_destroy.php">click here to log out</a>';
 ?>
