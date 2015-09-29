@@ -1,5 +1,6 @@
 <?php
 session_start();
+if(!isset($_SESSION['id_usuario'])){ header("Location: to_do_login.html");}
 //echo $_SESSION['login_user'];
 //echo $_SESSION['id_usuario'];
 $id_usu_sesion=$_SESSION['id_usuario'];
@@ -91,5 +92,5 @@ $nuevatarea="";
 	$nuevalista="";*/
 }
 
-echo '<a href="http://localhost/Aitor/TO_DO_/TO_DO_GIT/todoapp/Chris_todoapp/to_do_destroy.php">click here to log out</a>';
+echo '<a href="http://localhost/Aitor/TO_DO_/TO_DO_GIT/todoapp/Chris_todoapp/Logout.php">click here to log out</a>';
 ?>
