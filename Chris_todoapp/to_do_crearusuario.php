@@ -12,16 +12,18 @@ password: <input type="text" name="pass"><br>
 apellido: <input type="text" name="apellido1"><br>
 apellido2: <input type="text" name="apellido2"><br>
 email: <input type="text" name="email"><br>
+<input type="submit" value="crear usuario">
 
-<form action="to_do_create.php">
-	<input type="submit" value="crear usuario">
+	
 	<?php
-	$pdo=new PDO('mysql:host=localhost;dbname=TO_DO_PHP','root','internet80');
+	
+	$pdo=new PDO('mysql:host=localhost;dbname=apptarea','apptarea','apptarea');
 if(!$pdo){
 	die('could not connect' . PDO_error());
 }
 //$statement=$pdo->query('INSERT INTO `TO_DO_PHP`.`usuarios` (`id_usuario`, `login`) VALUES ('3', 'jorge');'); 
-	?>
+	
+?>
 </form>
 </body>
 </html>
