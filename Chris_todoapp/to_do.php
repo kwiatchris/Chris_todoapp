@@ -25,7 +25,7 @@ $fila=mysql_fetch_array($result);
 if(!$result==null&&$id_usuario==$result[0]["login"]&&($pass==$result[0]["password"])){
 	
 	$_SESSION['id_usuario']=$login; 
-	echo $_SESSION['id_usuario'];
+	//echo $_SESSION['id_usuario'];
 	//$_SESSION['id_usuario']=$result[0]["id_usuario"];
 	echo "<script language='javascript'>";
 		echo "alert('you are in!!!!')";
